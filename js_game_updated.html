@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<style>
-canvas {
-    border:1px solid #d3d3d3;
-    background-color: #f1f1f1;
-}
-</style>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="./script.js"></script>
-</head>
-<body>
-	<ul>
-		<li><a href="#">Game</a></li>
-		<li>Socre Board</li>
-		<li>About</li>
-	</ul>
-	<div id="mainContainer" style="position: absolute;">
-		<div id="canvasContainer">
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<style>
+		canvas {
+			border:1px solid #d3d3d3;
+			background-color: #f1f1f1;
+		}
+		body {
+			margin :0;
+		}
+	</style>
+	<link rel="stylesheet" href="js_game_updated.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="./script.js"></script>
+	</head>
+	<body>
+		<ul>
+			<li><a href="#">Game</a></li>
+			<li>Socre Board</li>
+			<li>About</li>
+		</ul>
+		<div id="mainContainer" style="position: absolute;">
+			<div id="canvasContainer">
+
+			</div>
+			<div id="buttonsContainer">
+				<button id="restartButton" onClick="restartGame()">Restart Game!</button>
+				<button id="pauseButton">Pause</button>	
+			</div>
 
 		</div>
-		<div id="buttonsContainer">
-			<button id="restartButton" onClick="restartGame()">Restart Game!</button>
-			<button id="pauseButton">Pause</button>	
-		</div>
-
-	</div>
-	<br>
-	<select id="countrySelector">
-	</select>
-</body>
+		<br>
+		<select id="countrySelector">
+		</select>
+	</body>
 </html>
