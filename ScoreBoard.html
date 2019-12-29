@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<style>
+		body {
+			margin :0;
+		}
+	</style>
+	<link rel="stylesheet" href="js_game_updated.css">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="./script.js"></script>
+</head>
+
+
+<body>
+	<!-- Navigation bar  -->
+	<div class="topnav">
+		<a href="js_game_updated.html">Game</a>
+		<a href="ScoreBoard.html" class="active">Score Board</a>
+		<a href="About.html">About</a>
+	</div>
+
+	<div>
+        <p>Score Board</p>
+        <table id="ScoreBoard">
+            <tr>
+                <th onclick="sortTable(1)">Name</th>
+                <th onclick="sortTable(2)">Email</th>
+				<th onclick="sortTable(3)">Country</th>
+				<th onclick="sortTable(4)">Score</th>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
