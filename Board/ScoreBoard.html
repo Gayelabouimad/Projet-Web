@@ -7,25 +7,26 @@
 			margin :0;
 		}
 	</style>
-	<link rel="stylesheet" href="js_game_updated.css">
+	<link rel="stylesheet" href="../js_game_updated.css">
+	<link rel="stylesheet" href="./ScoreBoard.css">
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="./script.js"></script>
+	<script src="./boardScript.js"></script>
 </head>
 
 
 <body>
 	<!-- Navigation bar  -->
 	<div class="topnav">
-		<a href="js_game_updated.html">Game</a>
-		<a href="ScoreBoard.html" class="active">Score Board</a>
-		<a href="About.html">About</a>
+		<a href="../Game/js_game_updated.html">Game</a>
+		<a href="../Board/ScoreBoard.html" class="active">Score Board</a>
+		<a href="../About/About.html">About</a>
 	</div>
 
 	<div>
         <p>Score Board</p>
         <table id="ScoreBoard">
-            <tr>
+            <tr style="background-color:#dcdcdc;">
                 <th onclick="sortTable(1)">Name</th>
                 <th onclick="sortTable(2)">Email</th>
 				<th onclick="sortTable(3)">Country</th>

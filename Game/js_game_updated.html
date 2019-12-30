@@ -11,20 +11,20 @@
 			margin :0;
 		}
 	</style>
-	<link rel="stylesheet" href="js_game_updated.css">
+	<link rel="stylesheet" href="../js_game_updated.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="./script.js"></script>
+	<script src="./GameScript.js"></script>
 	</head>
 	<body>
-		<ul>
-			<li><a href="#">Game</a></li>
-			<li>Socre Board</li>
-			<li>About</li>
-		</ul>
-		<div id="mainContainer" style="position: absolute;">
-			<div id="canvasContainer">
+		<!-- Navigation bar  -->
+		<div class="topnav">
+			<a href="../Game/js_game_updated.html" class="active">Game</a>
+			<a href="../Board/ScoreBoard.html">Score Board</a>
+			<a href="../About/About.html">About</a>
+		</div>
 
-			</div>
+		<div id="mainContainer" style="position: absolute;">
+			<div id="canvasContainer"></div>
 			<div id="buttonsContainer">
 				<button id="restartButton" onClick="restartGame()">Restart Game!</button>
 				<button id="pauseButton">Pause</button>	
