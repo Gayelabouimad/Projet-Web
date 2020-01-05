@@ -178,6 +178,24 @@ function component(width, height, color, x, y, type){
     }
 }
 
+function getInfo() {
+	var name = document.forms["myForm"]["name"].value;
+	var email = document.forms["myForm"]["email"].value;
+	var country = document.getElementById("countrySelector").value;
+
+	if (name == "" || email == "" || country == "") {
+	  alert("Name must be filled out");
+	  return false;
+	}else{
+		const obj = {
+			"Name": name, 
+			"Email": email, 
+			"Country": country, 
+			"Score": myScore.score
+		};
+	}
+  }
+
 function youShallLoose(){
 	// alert("You lost:( ! your score is:" + myScore.score);
 	document.getElementById("overlay").style.display = "block";

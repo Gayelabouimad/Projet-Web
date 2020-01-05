@@ -4,7 +4,7 @@
 document.addEventListener( "DOMContentLoaded", get_json_data, false );
 
 function get_json_data(){
-	var json_url = 'boardData.json';
+	var json_url = '../boardData.json';
 	// AJAX Request
 	xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() { 
