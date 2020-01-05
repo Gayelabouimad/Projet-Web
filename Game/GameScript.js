@@ -55,13 +55,20 @@ $(document).ready(function(){
 	
 
 function startGame(){
+	var firsttime = true;
 	myGamePiece = new component(30,30, "red", 10, 120);
 	myGamePiece.gravity = 0.05;
 	myScore = new component("30px", "Consolas", "black", 280, 40, "text");
 	myGameArea.start();
+	clearInterval(myGameArea.interval);
 	document.body.onkeydown = function (e){
 		if(e.keyCode == 32){
-		  accelerate(-0.2);
+			if(firsttime){
+				this.interval = setInterval(updateGameArea, 20);
+				firsttime = false;
+			}else{
+				accelerate(-0.2);
+			}
 		}
 	};
 	document.body.onkeyup = function (e){
@@ -182,7 +189,6 @@ function getInfo() {
 	var name = document.forms["myForm"]["name"].value;
 	var email = document.forms["myForm"]["email"].value;
 	var country = document.getElementById("countrySelector").value;
-
 	if (name == "" || email == "" || country == "") {
 	  alert("Name must be filled out");
 	  return false;
@@ -204,8 +210,8 @@ function youShallLoose(){
 }
 
 function updateGameArea() {
-    var x, height, gap, minHeight, maxHeight, minGap, maxGap;
-	if(myGamePiece.hitTopOrBottom){
+	var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+ 	if(myGamePiece.hitTopOrBottom){
 		youShallLoose();
 		return;
 	}
