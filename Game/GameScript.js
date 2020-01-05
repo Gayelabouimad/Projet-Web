@@ -179,8 +179,9 @@ function component(width, height, color, x, y, type){
 }
 
 function youShallLoose(){
-	alert("You lost:( ! your score is:" + myScore.score);
-	restartGame();
+	// alert("You lost:( ! your score is:" + myScore.score);
+	document.getElementById("overlay").style.display = "block";
+	// restartGame();
 	return;
 }
 

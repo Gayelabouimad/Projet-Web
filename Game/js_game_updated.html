@@ -34,20 +34,22 @@
 			</a>
 		</div>
 
-		<div class="form">
-			<form action="/action_page.php">
-				Full Name:<br>
-				<input type="text" name="name" placeholder="insert your name">
-				<br>
-				Email:<br>
-				<input type="text" name="email" placeholder="insert your email">
-				<br>
-				<br>
-				<input type="submit" value="Submit">
-			</form> 
+		<div id="overlay">
+			<div class="form">
+				<form action="/action_page.php">
+					Full Name:<br>
+					<input type="text" name="name" placeholder="insert your name">
+					<br>
+					Email:<br>
+					<input type="text" name="email" placeholder="insert your email">
+					<br>
+					<select id="countrySelector">
+					</select>
+					<br>
+					<input type="submit" value="Submit">
+				</form> 
+			</div>
 		</div>
-
-
 		<div id="mainContainer" style="position: absolute;">
 			<div id="canvasContainer"></div>
 			<div id="buttonsContainer">
@@ -57,7 +59,5 @@
 
 		</div>
 		<br>
-		<select id="countrySelector">
-		</select>
 	</body>
 </html>
