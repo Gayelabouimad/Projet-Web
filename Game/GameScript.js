@@ -205,6 +205,8 @@ function getInfo() {
 function youShallLoose(){
 	// alert("You lost:( ! your score is:" + myScore.score);
 	document.getElementById("overlay").style.display = "block";
+	var button = document.getElementById("score");
+	button.innerHTML = "Your score is : " + myScore.score;
 	// restartGame();
 	return;
 }
