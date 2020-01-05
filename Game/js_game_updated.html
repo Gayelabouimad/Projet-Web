@@ -18,10 +18,35 @@
 	<body>
 		<!-- Navigation bar  -->
 		<div class="topnav">
-			<a href="../Game/js_game_updated.html" class="active">Game</a>
-			<a href="../Board/ScoreBoard.html">Score Board</a>
-			<a href="../About/About.html">About</a>
+
+			<a href="../Game/js_game_updated.html" class="active">
+				<img src="../Assets/gameIcon.png" height="20" width="20" style="vertical-align: bottom;" />
+				<span>Game</span>
+			
+			</a>
+			<a href="../Board/ScoreBoard.html">
+				<img src="../Assets/scoreBoard.png" height="20" width="20" style="vertical-align: bottom;" />
+				<span>Score Board</span>
+			</a> 
+			<a href="../About/About.html">
+				<img src="../Assets/aboutUs.png" height="20" width="20" style="vertical-align: bottom;" />
+				<span>About</span>
+			</a>
 		</div>
+
+		<div class="form">
+			<form action="/action_page.php">
+				Full Name:<br>
+				<input type="text" name="name" placeholder="insert your name">
+				<br>
+				Email:<br>
+				<input type="text" name="email" placeholder="insert your email">
+				<br>
+				<br>
+				<input type="submit" value="Submit">
+			</form> 
+		</div>
+
 
 		<div id="mainContainer" style="position: absolute;">
 			<div id="canvasContainer"></div>
