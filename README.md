@@ -18,7 +18,7 @@ About: just a simple about screen.
 
 - [x] 6 – The player position should remain idle and pipes should not appear before the user presses space for the first time.
 
-- [ ] 7 – Remove the pause and resume buttons and make the game toggle between pause and resume by pressing the “p” key.
+- [x] 7 – Remove the pause and resume buttons and make the game toggle between pause and resume by pressing the “p” key.
 
 - [x] 8 – When the user looses a view overlay the canvas instead of the current alert dialog. This view should include the user score and a form where he can input his name, country and email.
 

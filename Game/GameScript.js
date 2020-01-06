@@ -5,19 +5,19 @@ var myScore;
 
 $(document).ready(function(){
 	startGame();
-	var pauseButton = jQuery("#pauseButton");
-	pauseButton.attr("myTextColor", "black");
-	pauseButton.click(function(){
-		pauseGame();
-		var color = pauseButton.attr("myTextColor");
-		if(pauseButton.attr("myTextColor") == "red"){
-			pauseButton.css("color", "black");
-			pauseButton.attr("myTextColor", "black");
-		}else{
-			pauseButton.css("color", "red");
-			pauseButton.attr("myTextColor", "red");
-		}
-	});
+	// var pauseButton = jQuery("#pauseButton");
+	// pauseButton.attr("myTextColor", "black");
+	// pauseButton.click(function(){
+	// 	pauseGame();
+	// 	var color = pauseButton.attr("myTextColor");
+	// 	if(pauseButton.attr("myTextColor") == "red"){
+	// 		pauseButton.css("color", "black");
+	// 		pauseButton.attr("myTextColor", "black");
+	// 	}else{ 
+	// 		pauseButton.css("color", "red");
+	// 		pauseButton.attr("myTextColor", "red");
+	// 	}
+	// });
 	// pauseButton.animate({
 	// 	opacity: "0.5",
 	// 	top: "20px",
@@ -56,19 +56,24 @@ $(document).ready(function(){
 
 function startGame(){
 	var firsttime = true;
+	var state = "pause";
 	myGamePiece = new component(30,30, "red", 10, 120);
 	myGamePiece.gravity = 0.05;
 	myScore = new component("30px", "Consolas", "black", 280, 40, "text");
 	myGameArea.start();
-	clearInterval(myGameArea.interval);
+	state = pauseGame(state);
 	document.body.onkeydown = function (e){
+		console.log(e.keyCode);
 		if(e.keyCode == 32){
 			if(firsttime){
-				this.interval = setInterval(updateGameArea, 20);
+				state = pauseGame(state);
 				firsttime = false;
 			}else{
 				accelerate(-0.2);
 			}
+		}
+		if(e.keyCode == 80){
+			state = pauseGame(state);
 		}
 	};
 	document.body.onkeyup = function (e){
@@ -101,19 +106,27 @@ var myGameArea = {
 	}
 }
 
-function pauseGame(){
-	var button = document.getElementById("pauseButton");
-	if(button.innerHTML == "Pause"){
-		clearInterval(myGameArea.interval);
-		button.innerHTML = "Resume";
-		// jQuery("#restartButton").hide();
-	}else{
+function pauseGame(state){
+	if(state == 'play'){
 		myGameArea.interval = setInterval(updateGameArea, 20);
-		button.innerHTML = "Pause";
-		// jQuery("#restartButton").show();
+		return 'pause';
+	}else{
+		clearInterval(myGameArea.interval);
+		return 'play';
+
 	}
-	button.blur();
-	jQuery("#restartButton").toggle();
+	// var button = document.getElementById("pauseButton");
+	// if(button.innerHTML == "Pause"){
+	// 	clearInterval(myGameArea.interval);
+	// 	button.innerHTML = "Resume";
+	// 	// jQuery("#restartButton").hide();
+	// }else{
+	// 	myGameArea.interval = setInterval(updateGameArea, 20);
+	// 	button.innerHTML = "Pause";
+	// 	// jQuery("#restartButton").show();
+	// }
+	// button.blur();
+	// jQuery("#restartButton").toggle();
 }
 
 function component(width, height, color, x, y, type){
