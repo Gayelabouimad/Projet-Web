@@ -1,3 +1,8 @@
+body{
+    background-image: url("../Assets/finalBackground.png");
+    background-size: cover;
+}
+
 .topnav {
     background-color: #333;
     overflow: hidden;
@@ -18,7 +23,7 @@
 }
 
 .topnav a.active {
-    background-color: #4CAF50;
+    background-color: #9f344e;
     color: white;
 }
 
@@ -46,10 +51,14 @@ div{
     height: max-content;
     padding: 3em;
     border-radius: 2em;
-    background-color: #4CAF50;
+    background-color: #9f344e;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
+}
+
+#score{
+    font-weight: bold;
 }

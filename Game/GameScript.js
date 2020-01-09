@@ -1,7 +1,9 @@
+// var fs = require('fs');
+
+
 var myGamePiece;
 var myObstacles = [];
 var myScore;
-
 
 $(document).ready(function(){
 	startGame();
@@ -39,6 +41,8 @@ $(document).ready(function(){
 		opacity: 1,
 	}, 1000);
 
+	// mainContainer.css({ });
+
 	$.ajax({
 		url: "https://restcountries.eu/rest/v2/all",
 		type: "GET",
@@ -57,7 +61,7 @@ $(document).ready(function(){
 function startGame(){
 	var firsttime = true;
 	var state = "pause";
-	myGamePiece = new component(30,30, "red", 10, 120);
+	myGamePiece = new component(60, 60, "red", 10, 120, "piece");
 	myGamePiece.gravity = 0.05;
 	myScore = new component("30px", "Consolas", "black", 280, 40, "text");
 	myGameArea.start();
@@ -95,6 +99,12 @@ var myGameArea = {
 	start : function(){
 		this.canvas.width = 580;
 		this.canvas.height = 470;
+		jQuery(this.canvas).css(
+			"background-image", 'url(../Assets/Background.jpg)'
+		);
+		jQuery(this.canvas).css(
+			"background-size", 'cover'
+		);
 		this.context = this.canvas.getContext("2d");
 		jQuery("#canvasContainer").append(this.canvas);
 		// document.body.insertBefore(this.canvas, document.body.childNodes[0]);
@@ -149,7 +159,17 @@ function component(width, height, color, x, y, type){
             ctx.font = this.width + " " + this.height;
             ctx.fillStyle = color;
             ctx.fillText(this.text, this.x, this.y);
-        }else {
+		}else if(this.type == "piece"){
+			const image = new Image();
+			image.src = '../Assets/ufo.png';
+			ctx.drawImage(image,this.x, this.y, this.width, this.height);
+		}else if(this.type == 'rock'){
+			var img = new Image();
+			img.src = '../Assets/moons.png';
+			ctx.drawImage(img,this.x, this.y, this.width, this.height);
+			// ctx.drawImage(img, 0, 0, img.width,    img.height,     // source rectangle
+			// 0, 0, canvas.width, canvas.height);
+		}else {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
@@ -187,7 +207,7 @@ function component(width, height, color, x, y, type){
         var othertop = otherobj.y;
         var otherbottom = otherobj.y + (otherobj.height);
         var crash = true;
-        if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
+        if ((mybottom < othertop + 12) || (mytop > otherbottom - 12) || (myright < otherleft + 18) || (myleft > otherright -18)) {
             crash = false;
         }
 		if(myleft > otherright && !otherobj.countedScore){
@@ -212,6 +232,12 @@ function getInfo() {
 			"Country": country, 
 			"Score": myScore.score
 		};
+		fs.writeFile('mynewfile3.txt', 'Hello content!', function (err) {
+			if (err) throw err;
+			console.log('Saved!');
+		});
+		restartGame();
+
 	}
   }
 
@@ -246,11 +272,13 @@ function updateGameArea() {
         minHeight = 20;
         maxHeight = myGameArea.canvas.height / 2;
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-        minGap = 50;
+        minGap = 80;
         maxGap = myGameArea.canvas.height / 3;
-        gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-        myObstacles.push(new component(10, height, "green", x, 0));
-        myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+		gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
+
+
+        myObstacles.push(new component(70, height, "#7cbca4", x, 0, "rock"));
+        myObstacles.push(new component(70, x - height - gap, "#7cbca4", x, height + gap, "rock"));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
         myObstacles[i].x += -1;
