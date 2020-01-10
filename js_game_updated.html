@@ -39,36 +39,18 @@
 					<label>
 						Full Name <br>
 					</label>
-					
-					<input type = "text" name = "name" class = "form-control"/>
+					<input type = "text" name = "name" class = "form-control" placeholder="insert your name"/>
 					<br>
-
 					<label>Email <br></label>
-					<input type = "text" name = "gender" class = "form-control"/>
+					<input type = "text" name = "email" class = "form-control" placeholder="insert your email"/>
 					<br>
-
-					<label>Designation <br></label>
-					<input type = "text" name = "designation" class = "form-control"/>
+					<label>Country <br></label>
+					<select id="countrySelector" name = "country"></select>
 					<br>
+					<input id="postscore" type = "hidden" name = "hiddenElement"/>
 					<input type = "submit" name = "submit" value = "Append" class = "btn"/>
-					<!-- <input type = "hidden" name = "hiddenElement" value = "24"> -->
 				</form>
-
-				<form name="myForm" onsubmit="return getInfo()">
-					Full Name:<br>
-					<input type="text" name="name" placeholder="insert your name">
-					<br>
-					Email:<br>
-					<input type="text" name="email" placeholder="insert your email">
-					<br>
-					Country:<br>
-					<select id="countrySelector">
-					</select>
-					<br>
-					<input type="submit" value="Submit">
-				</form> 
 				<div onclick="restartGame()">Play Again</div>	
-
 			</div>
 		</div>
 

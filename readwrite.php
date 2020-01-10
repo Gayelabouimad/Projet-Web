@@ -12,11 +12,11 @@
         if(empty($_POST["name"])){
             $error = "<label class = 'text-danger'>Enter Name</label>";
         }
-        else if(empty($_POST["gender"])){
-            $error = "<label class = 'text-danger'>Enter Gender</label>";
+        else if(empty($_POST["email"])){
+            $error = "<label class = 'text-danger'>Enter email</label>";
         }
-        else if(empty($_POST["designation"])){
-            $error = "<label class = 'text-danger'>Enter Designation</label>";
+        else if(empty($_POST["country"])){
+            $error = "<label class = 'text-danger'>Enter country</label>";
         }
         else{
             if(file_exists('file.json')){
@@ -24,9 +24,9 @@
                 $array_data = json_decode($current_data, true);
                 $extra = array (
                     'name' => $_POST['name'],
-                    'gender' => $_POST['gender'],
-                    'designation' => $_POST['designation'],
-                    // 'number' => $_POST['hiddenElement']
+                    'email' => $_POST['email'],
+                    'country' => $_POST['country'],
+                    'number' => $_POST['hiddenElement']
                 );
                 $array_data[] = $extra;
                 $final_data = json_encode($array_data);
