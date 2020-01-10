@@ -54,20 +54,45 @@ $(document).ready(function(){
 			}
 		}
 	});
-
-});
+	$("a").click(function(){
+		$("a").removeClass("active");
+		$(this).addClass("active");
+	});
 	
+	$(window).scroll(function(){
+		
+		$("section").each(function() {
+	
+			var bb= $(this).attr("id"); 
+			console.log("bb", bb);
+			var hei = $(this).outerHeight();
+			var grttop = $(this).offset().top -70;
+			
+			if($(window).scrollTop() > grttop && $(window).scrollTop() < grttop + hei) {
+				
+				$(".topnav a[href='#" + bb + "']").addClass("active");
+				
+			} else {
+				$(".topnav a[href='#" + bb + "']").removeClass("active");
+			}
+			
+		});
+	
+	});
+			
+	
+});
+
 
 function startGame(){
 	var firsttime = true;
 	var state = "pause";
 	myGamePiece = new component(60, 60, "red", 10, 120, "piece");
 	myGamePiece.gravity = 0.05;
-	myScore = new component("30px", "Consolas", "black", 280, 40, "text");
+	myScore = new component("2em", "Arial", "white", 200, 50, "text");
 	myGameArea.start();
 	state = pauseGame(state);
 	document.body.onkeydown = function (e){
-		console.log(e.keyCode);
 		if(e.keyCode == 32){
 			if(firsttime){
 				state = pauseGame(state);
@@ -75,6 +100,9 @@ function startGame(){
 			}else{
 				accelerate(-0.2);
 			}
+		}
+		if(e.keyCode == 32 && e.target == document.body) {
+			e.preventDefault();
 		}
 		if(e.keyCode == 80){
 			state = pauseGame(state);
@@ -88,11 +116,11 @@ function startGame(){
 }
 
 function restartGame(){
+	document.getElementById("overlay").style.display = "none";
 	clearInterval(myGameArea.interval);
 	myObstacles = [];
 	startGame();
 }
-
 
 var myGameArea = {
 	canvas : document.createElement("canvas"),
@@ -100,7 +128,7 @@ var myGameArea = {
 		this.canvas.width = 580;
 		this.canvas.height = 470;
 		jQuery(this.canvas).css(
-			"background-image", 'url(../Assets/Background.jpg)'
+			"background-image", 'url(./Assets/Background.jpg)'
 		);
 		jQuery(this.canvas).css(
 			"background-size", 'cover'
@@ -161,11 +189,11 @@ function component(width, height, color, x, y, type){
             ctx.fillText(this.text, this.x, this.y);
 		}else if(this.type == "piece"){
 			const image = new Image();
-			image.src = '../Assets/ufo.png';
+			image.src = './Assets/ufo.png';
 			ctx.drawImage(image,this.x, this.y, this.width, this.height);
 		}else if(this.type == 'rock'){
 			var img = new Image();
-			img.src = '../Assets/moons.png';
+			img.src = './Assets/moons.png';
 			ctx.drawImage(img,this.x, this.y, this.width, this.height);
 			// ctx.drawImage(img, 0, 0, img.width,    img.height,     // source rectangle
 			// 0, 0, canvas.width, canvas.height);
@@ -226,18 +254,12 @@ function getInfo() {
 	  alert("Name must be filled out");
 	  return false;
 	}else{
-		const obj = {
-			"Name": name, 
-			"Email": email, 
-			"Country": country, 
-			"Score": myScore.score
-		};
-		fs.writeFile('mynewfile3.txt', 'Hello content!', function (err) {
-			if (err) throw err;
-			console.log('Saved!');
-		});
-		restartGame();
-
+	const obj = {
+		"Name": name, 
+		"Email": email, 
+		"Country": country,
+		"Score": myScore.score
+	};
 	}
   }
 
@@ -284,7 +306,7 @@ function updateGameArea() {
         myObstacles[i].x += -1;
         myObstacles[i].update();
     }
-    myScore.text="SCORE: " + myScore.score;
+    myScore.text="Score: " + myScore.score;
     myScore.update();
     myGamePiece.newPos();
     myGamePiece.update();
@@ -297,3 +319,40 @@ function everyinterval(n) {
 function accelerate(n) {
     myGamePiece.gravity = n;
 }
+
+
+// Populate the table
+
+document.addEventListener( "DOMContentLoaded", get_json_data, false );
+
+function get_json_data(){
+	var json_url = 'boardData.json';
+	// AJAX Request
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() { 
+		if (this.readyState == 4 && this.status == 200) {
+			// If response is ok --> parse json then call appendJson
+			var data = JSON.parse(this.responseText);
+			console.log("append data", data);
+
+			append_json(data);
+		}
+	}
+	xmlhttp.open("GET", json_url, true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send();
+}
+
+function append_json(data){
+	var table = document.getElementById('ScoreBoard');
+	console.log(data)
+	data.forEach(function(object) {
+		var tr = document.createElement('tr');
+		tr.innerHTML = '<td>' + object.Name + '</td>' +
+		'<td>' + object.Email + '</td>' +
+		'<td>' + object.Country + '</td>' +
+		'<td>' + object.Score + '</td>';
+		table.appendChild(tr);
+	});
+}
+

@@ -1,11 +1,15 @@
 body{
-    background-image: url("../Assets/finalBackground.png");
-    background-size: cover;
+    background-size: contain;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .topnav {
     background-color: #333;
     overflow: hidden;
+    position: fixed;   
+    width: 100%;
+    top : 0;
+    z-index: 2;
 }
 
 .topnav a {
@@ -25,10 +29,6 @@ body{
 .topnav a.active {
     background-color: #9f344e;
     color: white;
-}
-
-div{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #overlay {
@@ -57,8 +57,70 @@ div{
     left: 50%;
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+input, select {
+    border: 1px solid white;
+    background: transparent;
+    border-radius: 12px;
+    padding: 0.5em;
+    margin: 1em 0 1em 0;
+    width: 30em;
+    color:gray;
 }
 
 #score{
     font-weight: bold;
+}
+
+#Board{
+    margin-top: 50em;
+}
+
+p {
+    color : #9f344e;
+    font-size: xx-large;
+    font-weight: bolder;
+    text-align: center;
+}
+table { 
+    border-collapse: collapse; 
+    width: 85%;
+    margin: auto;
+}
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding: 1em;
+    text-align: center;
+}
+
+td {
+    color: beige;
+}
+
+
+
+tr:hover {
+    background-color: gray;
+}
+
+#buttonsContainer{
+    text-align: center;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #9f344e;
+    border-radius: 25px;
+    margin: 2em 0 2em 0;
+    padding: 10px;
+}
+
+#restartButton{
+    background-color: transparent;
+    color: white;
+}
+
+#mainContainer{
+    flex: 1;
+    margin-top: 5em;
 }
