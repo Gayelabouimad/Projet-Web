@@ -26,7 +26,7 @@
                     'name' => $_POST['name'],
                     'email' => $_POST['email'],
                     'country' => $_POST['country'],
-                    'number' => $_POST['hiddenElement']
+                    'score' => $_POST['score']
                 );
                 $array_data[] = $extra;
                 $final_data = json_encode($array_data);

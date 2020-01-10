@@ -34,52 +34,57 @@
 
 		<div id="overlay">
 			<div class="form">
-				<div id="score"></div>
+				<div id="score" style="
+					font-weight: bold;
+					margin-bottom: 2em;
+					font-size: larger;
+				"></div>
 				<form method = "post" action="readwrite.php">
 					<label>
 						Full Name <br>
 					</label>
-					<input type = "text" name = "name" class = "form-control" placeholder="insert your name"/>
+					<input type = "text" name = "name" placeholder="insert your name"/>
 					<br>
 					<label>Email <br></label>
-					<input type = "text" name = "email" class = "form-control" placeholder="insert your email"/>
+					<input type = "text" name = "email" placeholder="insert your email"/>
 					<br>
 					<label>Country <br></label>
-					<select id="countrySelector" name = "country"></select>
+					<select id="countrySelector" name = "country" style="width: 31em"></select>
 					<br>
-					<input id="postscore" type = "hidden" name = "hiddenElement"/>
-					<input type = "submit" name = "submit" value = "Append" class = "btn"/>
+					<input id="postscore" type = "hidden" name = "score"/>
+					<input type = "submit" name = "submit" value = "Submit" style="width: max-content;
+					padding: 0.5em 1em; background-color: white; color:  #9f344e; font-size: medium;"/>
 				</form>
 				<div onclick="restartGame()">Play Again</div>	
 			</div>
 		</div>
 
 		<section id="mainContainer" style="position: absolute;">
-			<p>Game</p>
+			<p style="margin-top: 1em;">Game</p>
 			<div id="canvasContainer"></div>
 			<div id="buttonsContainer">
 				<div id="restartButton" onClick="restartGame()" onclick="restartGame()">
-					Restart Game!
+					Restart Game
 				</div>
 		<!-- <button id="pauseButton">Pause</button>	 -->
 			</div>
 		</section>
 
-		<section id="Board">
-			<p>Score Board</p>
+		<section id="Board" style="margin-top: 48em;">
+			<p style="margin-top: 1em;">Score Board</p>
 			<table id="ScoreBoard">
 				<tr style="background-color:#dcdcdc;">
-					<th onclick="sortTable(1)">Name</th>
-					<th onclick="sortTable(2)">Email</th>
-					<th onclick="sortTable(3)">Country</th>
-					<th onclick="sortTable(4)">Score</th>
+					<th onclick="sortTable(1)">Score</th>
+					<th onclick="sortTable(2)">Name</th>
+					<th onclick="sortTable(3)">Email</th>
+					<th onclick="sortTable(4)">Country</th>
 				</tr>
 			</table>
 		</section>
 
-		<section id="About" class="section">
+		<section id="About">
 			<p>About</p>
-			<div style="margin-top : 100em; color: white">
+			<div style="margin-bottom : 100em; color: white">
 				Lorem ipsum
 				Lorem ipsum
 				Lorem ipsum

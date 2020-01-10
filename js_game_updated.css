@@ -70,13 +70,7 @@ input, select {
     color:gray;
 }
 
-#score{
-    font-weight: bold;
-}
 
-#Board{
-    margin-top: 50em;
-}
 
 p {
     color : #9f344e;
@@ -99,13 +93,18 @@ td {
     color: beige;
 }
 
-
-
 tr:hover {
     background-color: gray;
 }
 
 #buttonsContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#restartButton{
+    background-color: transparent;
+    color: white;
     text-align: center;
     border-style: solid;
     border-width: 2px;
@@ -113,11 +112,7 @@ tr:hover {
     border-radius: 25px;
     margin: 2em 0 2em 0;
     padding: 10px;
-}
-
-#restartButton{
-    background-color: transparent;
-    color: white;
+    width: max-content;
 }
 
 #mainContainer{

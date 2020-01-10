@@ -1,1 +1,21 @@
-[{"name":"rayane","email":"rayane.farah","country":"Moldova (Republic of)","number":"1"},{"name":"Gayel","email":"Abou Imad","country":"Argentina","number":"0"}]
+[
+
+    {
+        "name": "Gayel",
+        "email": "Abou Imad",
+        "country": "Argentina",
+        "score": "0"
+    },
+    {
+        "name": "Gayel Abou Imad",
+        "email": "gayelabouimad@outlook.com",
+        "country": "Lebanon",
+        "score": "10"
+    },
+    {
+        "name": "rayane",
+        "email": "rayane.farah",
+        "country": "Moldova (Republic of)",
+        "score": "4"
+    }
+]

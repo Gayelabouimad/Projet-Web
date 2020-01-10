@@ -7,30 +7,6 @@ var myScore;
 
 $(document).ready(function(){
 	startGame();
-	// var pauseButton = jQuery("#pauseButton");
-	// pauseButton.attr("myTextColor", "black");
-	// pauseButton.click(function(){
-	// 	pauseGame();
-	// 	var color = pauseButton.attr("myTextColor");
-	// 	if(pauseButton.attr("myTextColor") == "red"){
-	// 		pauseButton.css("color", "black");
-	// 		pauseButton.attr("myTextColor", "black");
-	// 	}else{ 
-	// 		pauseButton.css("color", "red");
-	// 		pauseButton.attr("myTextColor", "red");
-	// 	}
-	// });
-	// pauseButton.animate({
-	// 	opacity: "0.5",
-	// 	top: "20px",
-	// }, 2000);
-
-	// $("canvas").animate(
-	// 	{
-	// 		marginLeft: '500px',
-	// 		marginTop: '100px'
-	// 	}, 1000
-	// );
 	let mainContainer = jQuery("#mainContainer");
 	let x = jQuery(window).width()/2 - mainContainer.width()/2;
 	let y = jQuery(window).height()/2 - mainContainer.height()/2;
@@ -40,9 +16,6 @@ $(document).ready(function(){
 		top: y,
 		opacity: 1,
 	}, 1000);
-
-	// mainContainer.css({ });
-
 	$.ajax({
 		url: "https://restcountries.eu/rest/v2/all",
 		type: "GET",
@@ -58,29 +31,19 @@ $(document).ready(function(){
 		$("a").removeClass("active");
 		$(this).addClass("active");
 	});
-	
 	$(window).scroll(function(){
-		
 		$("section").each(function() {
-	
 			var bb= $(this).attr("id"); 
 			console.log("bb", bb);
 			var hei = $(this).outerHeight();
 			var grttop = $(this).offset().top -70;
-			
 			if($(window).scrollTop() > grttop && $(window).scrollTop() < grttop + hei) {
-				
 				$(".topnav a[href='#" + bb + "']").addClass("active");
-				
 			} else {
 				$(".topnav a[href='#" + bb + "']").removeClass("active");
 			}
-			
 		});
-	
 	});
-			
-	
 });
 
 
@@ -135,7 +98,6 @@ var myGameArea = {
 		);
 		this.context = this.canvas.getContext("2d");
 		jQuery("#canvasContainer").append(this.canvas);
-		// document.body.insertBefore(this.canvas, document.body.childNodes[0]);
 		this.frameNo = 0;
 		this.interval = setInterval(updateGameArea, 20);
 	},
@@ -151,20 +113,7 @@ function pauseGame(state){
 	}else{
 		clearInterval(myGameArea.interval);
 		return 'play';
-
 	}
-	// var button = document.getElementById("pauseButton");
-	// if(button.innerHTML == "Pause"){
-	// 	clearInterval(myGameArea.interval);
-	// 	button.innerHTML = "Resume";
-	// 	// jQuery("#restartButton").hide();
-	// }else{
-	// 	myGameArea.interval = setInterval(updateGameArea, 20);
-	// 	button.innerHTML = "Pause";
-	// 	// jQuery("#restartButton").show();
-	// }
-	// button.blur();
-	// jQuery("#restartButton").toggle();
 }
 
 function component(width, height, color, x, y, type){
@@ -195,8 +144,6 @@ function component(width, height, color, x, y, type){
 			var img = new Image();
 			img.src = './Assets/moons.png';
 			ctx.drawImage(img,this.x, this.y, this.width, this.height);
-			// ctx.drawImage(img, 0, 0, img.width,    img.height,     // source rectangle
-			// 0, 0, canvas.width, canvas.height);
 		}else {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -246,30 +193,11 @@ function component(width, height, color, x, y, type){
     }
 }
 
-function getInfo() {
-	var name = document.forms["myForm"]["name"].value;
-	var email = document.forms["myForm"]["email"].value;
-	var country = document.getElementById("countrySelector").value;
-	if (name == "" || email == "" || country == "") {
-	  alert("Name must be filled out");
-	  return false;
-	}else{
-	const obj = {
-		"Name": name, 
-		"Email": email, 
-		"Country": country,
-		"Score": myScore.score
-	};
-	}
-  }
-
 function youShallLoose(){
-	// alert("You lost:( ! your score is:" + myScore.score);
 	document.getElementById("overlay").style.display = "block";
 	var button = document.getElementById("score");
 	document.getElementById("postscore").value = myScore.score;
 	button.innerHTML = "Your score is : " + myScore.score;
-	// restartGame();
 	return;
 }
 
@@ -298,8 +226,6 @@ function updateGameArea() {
         minGap = 80;
         maxGap = myGameArea.canvas.height / 3;
 		gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-
-
         myObstacles.push(new component(70, height, "#7cbca4", x, 0, "rock"));
         myObstacles.push(new component(70, x - height - gap, "#7cbca4", x, height + gap, "rock"));
     }
@@ -321,21 +247,17 @@ function accelerate(n) {
     myGamePiece.gravity = n;
 }
 
-
 // Populate the table
-
 document.addEventListener( "DOMContentLoaded", get_json_data, false );
-
 function get_json_data(){
-	var json_url = 'boardData.json';
-	// AJAX Request
+	var json_url = 'file.json';
 	xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() { 
 		if (this.readyState == 4 && this.status == 200) {
-			// If response is ok --> parse json then call appendJson
 			var data = JSON.parse(this.responseText);
-			console.log("append data", data);
-
+			newdata = data.sort(function (a, b) {
+				return b.score - a.score;
+			  });
 			append_json(data);
 		}
 	}
@@ -346,13 +268,13 @@ function get_json_data(){
 
 function append_json(data){
 	var table = document.getElementById('ScoreBoard');
-	console.log(data)
 	data.forEach(function(object) {
 		var tr = document.createElement('tr');
-		tr.innerHTML = '<td>' + object.Name + '</td>' +
-		'<td>' + object.Email + '</td>' +
-		'<td>' + object.Country + '</td>' +
-		'<td>' + object.Score + '</td>';
+		tr.innerHTML = 
+		'<td>' + object.score + '</td>' +
+		'<td>' + object.name + '</td>' +
+		'<td>' + object.email + '</td>' +
+		'<td>' + object.country + '</td>';
 		table.appendChild(tr);
 	});
 }
